@@ -11,7 +11,7 @@ const newTodo = async (req, res) => {
         const newTodo = new Todo(req.body);
 
         const savedTodo = await newTodo.save();
-        res.status(200).json({ message: "Successfully Added" , data: savedTodo})
+        res.status(201).json({ message: "Successfully Added" , data: savedTodo})
     } catch (error) {
         res.status(500).json(error);
     }
