@@ -103,7 +103,7 @@ describe('Delete todo', () => {
 
 describe('Get todo', () => {
     it('return status 200 if successfully fetched', async()=>{
-        const res = await request(app).get('/api/todo?page=0&limit=5')
+        const res = await request(app).get('/api/todo?page=1&limit=5')
         expect(res.statusCode).toEqual(200);
     })
 })

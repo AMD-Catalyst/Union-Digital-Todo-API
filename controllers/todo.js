@@ -59,11 +59,11 @@ const deleteTodo = async (req,res) => {
 
 const getAllTodo = async (req, res) => {
     try {
-        const page = parseInt(req.query.page) || 0;
+        const page = parseInt(req.query.page) || 1;
         const limit = parseInt(req.query.limit) || 5;
         
-        let startP = page * limit;
-        const endP = (page + 1) * limit;
+        let startP = (page - 1 ) * limit;
+        const endP = ((page - 1) + 1) * limit;
 
         const result = {};
         const totalTodo = await Todo.countDocuments().exec();
@@ -87,7 +87,7 @@ const getAllTodo = async (req, res) => {
             .skip(startP)
             .limit(limit)
             .exec()
-        result.rows = limit;
+            
         res.status(200).json(result);
     } catch (error) {
         res.status(500).json(error);
