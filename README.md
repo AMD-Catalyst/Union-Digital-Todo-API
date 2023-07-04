@@ -15,7 +15,7 @@ Body
 }
 
 To Update Todo
-http://localhost:5000/api/todo/update/<id>
+http://localhost:5000/api/todo/update/{id}
 
 Body
 {
@@ -24,10 +24,10 @@ Body
 }
 
 To Delete Todo
-http://localhost:5000/api/todo/delete/<id>
+http://localhost:5000/api/todo/delete/{id}
 
 To Update Status
-http://localhost:5000/api/todo/update_status/<id>
+http://localhost:5000/api/todo/update_status/{id}
 
 Body 
 {
