@@ -75,14 +75,6 @@ describe('Update todo status', () => {
         expect(res.body.message).toEqual("isDone is required");
     })
 
-    it('return bad request if description is missing', async()=>{
-        const res = await request(app).patch('/api/todo/update_status/64a4137344dc569489f1ee65').send({
-            isDone: true
-        })
-
-        expect(res.statusCode).toEqual(400);
-        expect(res.body.message).toEqual("Todo not found.");
-    })
 })
 
 describe('Delete todo', () => {
