@@ -57,6 +57,16 @@ describe('Update todo', () => {
         expect(res.statusCode).toEqual(400);
         expect(res.body.message).toEqual("Description is required.");
     })
+
+    it('return bad request if record not found', async()=>{
+        const res = await request(app).put('/api/todo/update/64a3f2763837c08a5b58658b').send({
+            title: "Test21",
+            description: "test description21"
+        })
+
+        expect(res.statusCode).toEqual(400);
+        expect(res.body.message).toEqual("Record not found.");
+    })
 })
 
 describe('Update todo status', () => {
@@ -84,11 +94,11 @@ describe('Delete todo', () => {
         expect(res.statusCode).toEqual(200);
     })
 
-    it('return bad request if todo not found', async()=>{
+    it('return bad request if record not found', async()=>{
         const res = await request(app).delete('/api/todo/delete/64a3f4bc1cea715576761b82')
 
         expect(res.statusCode).toEqual(400);
-        expect(res.body.message).toEqual("Todo not found.");
+        expect(res.body.message).toEqual("Record not found.");
     })
 
 })

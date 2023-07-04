@@ -34,7 +34,7 @@ const updateTodo = async (req, res) => {
             { new: true }
         )
 
-        if (!updateTodo) return res.status(400).json({ message: 'Todo not found.'});
+        if (!updateTodo) return res.status(400).json({ message: 'Record not found.'});
 
         res.status(200).json({ message: "Successfully Updated" , data: updateTodo})
     } catch (error) {
@@ -48,7 +48,7 @@ const deleteTodo = async (req,res) => {
 
         const deleteTodo = await Todo.findByIdAndDelete(id);
 
-        if(!deleteTodo) return res.status(400).json({message: 'Todo not found.'})
+        if(!deleteTodo) return res.status(400).json({message: 'Record not found.'})
 
         res.status(200).json({ message: "Successfully Deleted" , data: deleteTodo});
 
@@ -87,7 +87,7 @@ const getAllTodo = async (req, res) => {
             .skip(startP)
             .limit(limit)
             .exec()
-            
+
         res.status(200).json(result);
     } catch (error) {
         res.status(500).json(error);
@@ -100,7 +100,7 @@ const updateStatus = async (req, res) => {
 
         const {isDone} = req.body;
 
-        if(!isDone) return res.status(400).json({message: "isDone is required"});
+        if(isDone === undefined) return res.status(400).json({message: "isDone is required"});
         
         const updateTodo = await Todo.findByIdAndUpdate(
             id,
@@ -110,7 +110,7 @@ const updateStatus = async (req, res) => {
             { new: true }
         )
 
-        if (!updateTodo) return res.status(400).json({ message: 'Todo not found.'});
+        if (!updateTodo) return res.status(400).json({ message: 'Record not found.'});
 
         res.status(200).json({ message: "Todo Status Updated" , data: updateTodo})
     } catch (error) {
