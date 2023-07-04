@@ -71,7 +71,7 @@ const getAllTodo = async (req, res) => {
 
         const result = {};
         const totalTodo = await Todo.countDocuments().exec();
-        result.totalTodo = totalTodo; 
+        result.totalRecords = totalTodo; 
 
         if (startP > 0){
             result.previous = {
