@@ -3,7 +3,7 @@
 To Get List
 http://localhost:5000/api/todo
 
-http://localhost:5000/api/todo?page=0&limit=5
+http://localhost:5000/api/todo?page=1&limit=5
 
 To Add Todo
 http://localhost:5000/api/todo/new
