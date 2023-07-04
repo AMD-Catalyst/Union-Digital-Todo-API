@@ -21,6 +21,11 @@ const updateTodo = async (req, res) => {
     try {
         const { id } = req.params;
 
+        const {title,description} = req.body;
+
+        if(!title) return res.status(400).json({message: "Title is required"});
+        if(!description) return res.status(400).json({message: "Description is required."});
+
         const updateTodo = await Todo.findByIdAndUpdate(
             id,
             {
@@ -78,7 +83,7 @@ const getAllTodo = async (req, res) => {
             }
         }
 
-        result.data = await Todo.find().sort("-_id")
+        result.data = await Todo.find().sort("-updatedAt")
             .skip(startP)
             .limit(limit)
             .exec()
@@ -89,9 +94,34 @@ const getAllTodo = async (req, res) => {
     }
 }
 
+const updateStatus = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const {isDone} = req.body;
+
+        if(!isDone) return res.status(400).json({message: "isDone is required"});
+        
+        const updateTodo = await Todo.findByIdAndUpdate(
+            id,
+            {
+                $set: req.body,
+            },
+            { new: true }
+        )
+
+        if (!updateTodo) return res.status(400).json({ message: 'Todo not found.'});
+
+        res.status(200).json({ message: "Todo Status Updated" , data: updateTodo})
+    } catch (error) {
+        res.status(500).json(error);
+    }
+}
+
 module.exports = {
     newTodo,
     updateTodo,
     deleteTodo,
-    getAllTodo
+    getAllTodo,
+    updateStatus
 }

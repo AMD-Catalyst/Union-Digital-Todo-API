@@ -11,7 +11,9 @@ const todoRoutes = require("./routes/todoRoute");
 
 app.use('/api/todo',todoRoutes);
 
-
+app.use('*', (req, res) => {
+    res.status(500).json( {message: "Request cannot be found"})
+})
 //mongoDB connection
 mongoose.mongoose.set("strictQuery", false);
 mongoose.connect(process.env.MONGO_URL)
