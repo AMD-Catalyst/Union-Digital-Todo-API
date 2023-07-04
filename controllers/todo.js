@@ -1,5 +1,6 @@
 const Todo = require("../models/Todo")
 
+//New Todo
 const newTodo = async (req, res) => {
     try {
 
@@ -17,6 +18,7 @@ const newTodo = async (req, res) => {
     }
 }
 
+//Update Todo
 const updateTodo = async (req, res) => {
     try {
         const { id } = req.params;
@@ -42,6 +44,7 @@ const updateTodo = async (req, res) => {
     }
 }
 
+//Delete Todo
 const deleteTodo = async (req,res) => {
     try {
         const { id } = req.params;
@@ -57,6 +60,7 @@ const deleteTodo = async (req,res) => {
     }
 }
 
+//Get All Todo
 const getAllTodo = async (req, res) => {
     try {
         const page = parseInt(req.query.page) || 1;
@@ -94,6 +98,7 @@ const getAllTodo = async (req, res) => {
     }
 }
 
+//Update Status
 const updateStatus = async (req, res) => {
     try {
         const { id } = req.params;
