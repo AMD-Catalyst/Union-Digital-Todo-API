@@ -35,4 +35,5 @@ Body
 }
 
 Unit Tests
+just type,
 npm run test
